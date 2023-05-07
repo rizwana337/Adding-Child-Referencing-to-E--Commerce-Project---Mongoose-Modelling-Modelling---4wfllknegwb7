@@ -35,11 +35,13 @@ const userSchema = new mongoose.Schema(
                     throw new Error('password should be atleast 8 characters long');
                 }
             },
-        }
-        // Add child referencing relationship here
+        }, 
+        productsPurchased: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }]
     },
     { timestamps: true }
 );
 
 module.exports = mongoose.model('User', userSchema);
-
