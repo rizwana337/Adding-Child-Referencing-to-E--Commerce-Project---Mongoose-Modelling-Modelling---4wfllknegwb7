@@ -8,7 +8,8 @@ const {
     createUser,
     updateUser,
     deleteUser,
-    addProductToUser
+    addProductToUser, 
+    getProductsPurchasedByUser
 } = require("../controllers/userControllers");
 
 //Import the required middlware here.
@@ -16,10 +17,9 @@ const { grantAccessTo } = require('../middlewares/grantAccessTo');
 
 const router = express.Router();
 
-/*
-    Add a route declaration PATCH /add-product to add a product to the user's productsPurchased array.
-*/
-// Add your route here 
+
+router.patch("/add-product", addProductToUser);
+router.get("/products-purchased/", getProductsPurchasedByUser);
 
 // Public Routes
 router.post("/", grantAccessTo(['guest', 'admin', 'superadmin']), createUser);
